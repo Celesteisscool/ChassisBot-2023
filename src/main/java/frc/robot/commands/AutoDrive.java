@@ -7,9 +7,7 @@ package frc.robot.commands;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class AutoDrive extends CommandBase {
@@ -52,11 +50,9 @@ public class AutoDrive extends CommandBase {
   @Override
   public void execute() {
     drive.arcadeDrive(x, rot);
-    if (angle == 0) {
-      if (timer.get() > time) {
+    if (angle == 0 && timer.get() > time) {
         end(false);
       }
-    }
     else if (Math.abs(gyro.getYaw() - gyroOff) >= angle) {
       end(false);
     }
