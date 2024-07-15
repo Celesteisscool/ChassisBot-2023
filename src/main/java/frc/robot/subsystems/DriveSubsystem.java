@@ -31,6 +31,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     rearRight.setInverted(true);
     frontRight.setInverted(true);
+    gyro.calibrate();
   }
 
   public void arcadeDrive(double forwardSpeed, double turnSpeed) {

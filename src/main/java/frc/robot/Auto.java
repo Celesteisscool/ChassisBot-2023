@@ -8,11 +8,10 @@ public class Auto extends SequentialCommandGroup {
   public Auto(DriveSubsystem driveSubsystem) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    int sides = 4;
-
-    for (int i = 1; i <= sides; i++) {
-      addCommands(new AutoDrive(driveSubsystem, 0, 0.25, 0, 360/sides));
-      addCommands(new AutoDrive(driveSubsystem, 0.25, 0, 1, 0));
-    }
+    
+    addCommands(
+      new AutoDrive(driveSubsystem, 0.25, -0.02, 11.5, 0),
+      new AutoDrive(driveSubsystem, -0.25, 0.02, 11.5, 0)
+    );
   }
 }

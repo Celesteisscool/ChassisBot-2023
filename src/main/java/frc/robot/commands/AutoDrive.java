@@ -19,7 +19,7 @@ public class AutoDrive extends CommandBase {
   double time;
   double angle;
   Timer timer = new Timer();
-  AHRS gyro = null;
+  AHRS gyro;
   double gyroOff = 0;
   Boolean finished = false;
 
@@ -45,18 +45,19 @@ public class AutoDrive extends CommandBase {
   public void initialize() {
     timer.restart();
     gyroOff = gyro.getYaw();
+    drive.arcadeDrive(0, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     drive.arcadeDrive(x, rot);
-    if ((angle) != 0) {
-      if (Math.abs(gyro.getYaw() - gyroOff) >= angle) {
+    if (angle == 0) {
+      if (timer.get() > time) {
         end(false);
       }
     }
-    else if (timer.get() > time) {
+    else if (Math.abs(gyro.getYaw() - gyroOff) >= angle) {
       end(false);
     }
   }
@@ -65,7 +66,6 @@ public class AutoDrive extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     finished = true;
-    drive.arcadeDrive(0, 0);
   }
 
   // Returns true when the command should end.
