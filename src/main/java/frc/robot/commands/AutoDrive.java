@@ -18,8 +18,8 @@ public class AutoDrive extends CommandBase {
   double angle;
   Timer timer = new Timer();
   AHRS gyro;
-  double gyroOff = 0;
-  Boolean finished = false;
+  double gyroOff;
+  Boolean finished;
 
   
 
