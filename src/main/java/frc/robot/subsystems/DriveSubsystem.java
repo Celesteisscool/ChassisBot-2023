@@ -29,8 +29,8 @@ public class DriveSubsystem extends SubsystemBase {
     rearLeft = new AutoDetectMotorController(Constants.RearLeft);
     frontLeft = new AutoDetectMotorController(Constants.FrontLeft);
 
-    rearRight.setInverted(true);
-    frontRight.setInverted(true);
+    rearRight.setInverted(false);
+    frontRight.setInverted(false);
     gyro.calibrate();
   }
 

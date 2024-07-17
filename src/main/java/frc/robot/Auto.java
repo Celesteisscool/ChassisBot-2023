@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.DriveStraight;
@@ -11,9 +12,10 @@ public class Auto extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     
     addCommands(
-      new DriveStraight(driveSubsystem, 0.4).withTimeout(7),
-      new AutoDrive(driveSubsystem, 0.3, 0.25, 0, 90),
-      new DriveStraight(driveSubsystem, 0.3).withTimeout(2)
+      new DriveStraight(driveSubsystem, 0.3).withTimeout(2),
+      new AutoDrive(driveSubsystem, 0.25, 0.3, 0, -90),
+      new AutoDrive(driveSubsystem, 0.25, 0.3, 0, -90),
+      new AutoDrive(driveSubsystem, 0, 0, 1, 0)
     );
   }
 }

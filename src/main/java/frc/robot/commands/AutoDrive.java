@@ -42,7 +42,7 @@ public class AutoDrive extends CommandBase {
   @Override
   public void initialize() {
     timer.restart();
-    gyroOff = gyro.getYaw();
+    gyro.reset();
     drive.arcadeDrive(0, 0);
   }
 
@@ -53,7 +53,7 @@ public class AutoDrive extends CommandBase {
     if (angle == 0 && timer.get() > time) {
         end(false);
       }
-    else if (Math.abs(gyro.getYaw() - gyroOff) >= angle) {
+    else if (Math.abs(gyro.getYaw()) >= Math.abs(angle)) {
       end(false);
     }
   }

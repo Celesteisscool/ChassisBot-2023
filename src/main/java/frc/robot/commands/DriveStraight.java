@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 import com.kauailabs.navx.frc.*;
@@ -33,14 +34,15 @@ public class DriveStraight extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    gyroOff = gyro.getYaw();
+    gyro.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     // Angle Error to add offset speed 🙏
-    gyroError = (gyro.getYaw() - gyroOff) / 20;
+    gyroError = gyro.getYaw() / 20;
+    SmartDashboard.putNumber("Error", gyro.getYaw());
     drive.arcadeDrive(speed, -gyroError);
   }
   
